@@ -1,0 +1,14 @@
+# Neo4j driver
+neo4j>=5.14.0
+
+# RL environment and agent
+stable-baselines3>=2.0.0
+gym>=0.26.2
+
+torch>=1.13.1
+numpy>=1.23.5
+
+# Sentence embedding
+transformers>=4.30.0,<4.35.0
+sentence-transformers>=2.2.2
+shimmy>=2.0

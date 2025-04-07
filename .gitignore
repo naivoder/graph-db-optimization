@@ -1,0 +1,64 @@
+logs/*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+*.env
+*.venv
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# PyInstaller
+*.spec
+dist/
+build/
+
+# Test cache
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+
+# MyPy, Pyre, Pytype
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Logs and profiling
+*.log
+*.out
+*.profile
+
+# IDEs
+.vscode/
+.idea/
+
+# Environments
+*.egg-info/
+.eggs/
+*.manifest
+*.egg
+
+# Distribution
+*.tar.gz
+*.whl
+
+# Pip
+pip-wheel-metadata/
+__pypackages__/
+
+# macOS/Linux/Windows system files
+.DS_Store
+Thumbs.db
+ehthumbs.db
