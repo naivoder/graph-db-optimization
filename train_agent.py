@@ -181,9 +181,9 @@ if __name__ == "__main__":
         print(next(query_gen))
 
     env = Neo4jIndexEnv(uri, query_gen)
-    eval_callback = EvalCallback(env, log_path="./logs/", eval_freq=500)
+    eval_callback = EvalCallback(env, log_path="./logs/", eval_freq=100)
 
-    model = PPO("MlpPolicy", env, verbose=1)
+    model = PPO("MlpPolicy", env, verbose=0)
     model.learn(total_timesteps=100000, callback=eval_callback)
     env.close()
 
