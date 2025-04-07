@@ -8,8 +8,6 @@ import numpy as np
 from neo4j import GraphDatabase
 from stable_baselines3 import PPO
 from stable_baselines3.common.callbacks import EvalCallback
-from stable_baselines3.common.vec_env import DummyVecEnv, VecMonitor
-
 from sentence_transformers import SentenceTransformer
 import time
 import random
@@ -182,27 +180,12 @@ if __name__ == "__main__":
     for i in range(5):
         print(next(query_gen))
 
-    vec_env = DummyVecEnv([lambda: Neo4jIndexEnv(uri, query_gen) for _ in range(10)])
-    vec_env = VecMonitor(vec_env)  
+    env = Neo4jIndexEnv(uri, query_gen)
+    eval_callback = EvalCallback(env, log_path="./logs/", eval_freq=500)
 
-    eval_env = Neo4jIndexEnv(uri, query_gen)
-    eval_callback = EvalCallback(
-        eval_env,
-        log_path="./logs/",
-        eval_freq=500,
-        n_eval_episodes=10,  
-    )
-
-    model = PPO(
-        "MlpPolicy",
-        vec_env,
-        verbose=1,
-    )
-
+    model = PPO("MlpPolicy", env, verbose=1)
     model.learn(total_timesteps=100000, callback=eval_callback)
-
-    vec_env.close()
-    eval_env.close()
+    env.close()
 
     data = np.load("./logs/evaluations.npz")
     timesteps = data["timesteps"]
